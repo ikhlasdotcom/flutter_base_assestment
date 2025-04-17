@@ -11,7 +11,7 @@ Implement a Flutter application that meets these requirements:
 1. **Display prayer times for today and tomorrow**:
    - When the app launches, it should immediately show prayer times for the current date (today)
    - If tomorrow's prayer times are available locally, they should also be shown
-   - If not available locally, fetch tomorrow's times in the background without showing a loading indicator
+   - If tomorrow's prayer times are not available locally, fetch in the background without showing a loading indicator
 
 2. **Local data persistence**:
    - Prayer times should be saved locally once retrieved from the network
@@ -55,11 +55,10 @@ The following components need to be implemented:
    - Implement proper loading states and error handling
 
 ### Sample API
+We suggest using our STG prayer times API. Keep every query parameters the same; only change `start_date` and `end_date`.
+`https://prayer-times-stg.ikhlas.workers.dev/?longitude=101.6964&latitude=2.9264&start_date=2025-04-17&end_date=2025-04-18&state=any`
 
-You can use any public prayer times API or create a mock API. Here are some suggestions:
-- Create a mock API using services like mockAPI.io
-- Use existing prayer times APIs (e.g., Aladhan API)
-- Create a simple JSON file with prayer times data
+It responds with JSON containing `administrative_division`, `localities` and `prayer_times`.
 
 ### Evaluation Criteria
 

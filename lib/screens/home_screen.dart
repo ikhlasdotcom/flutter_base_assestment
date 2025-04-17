@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/prayer_time.dart';
-import '../providers/prayer_time_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/prayer_time_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('IKHLAS Prayer Times')),
-      body: Consumer<PrayerTimeProvider>(
-        builder: (context, provider, child) {
+      body: BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
+        builder: (context, state) {
           // TODO: Implement UI based on the provider's state
           // The candidate should handle different states:
           // 1. Loading state - Show a progress indicator

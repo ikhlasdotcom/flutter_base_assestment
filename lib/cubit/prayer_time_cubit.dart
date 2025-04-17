@@ -1,19 +1,18 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../models/prayer_time.dart';
 import '../services/api_service.dart';
 import '../services/storage_service.dart';
 
-class PrayerTimeProvider with ChangeNotifier {
+part 'prayer_time_cubit.freezed.dart';
+
+class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   final ApiService _apiService = ApiService();
   final StorageService _storageService = StorageService();
 
-  bool _isLoading = false;
-  String? _error;
-  final Map<String, PrayerTime> _prayerTimes = {};
-
-  bool get isLoading => _isLoading;
-  String? get error => _error;
-  Map<String, PrayerTime> get prayerTimes => _prayerTimes;
+  PrayerTimeCubit() : super(const PrayerTimeState.loading());
 
   // TODO: Implement the methods required to manage prayer time data
   // The candidate should implement these methods to fetch data from the API or local storage
@@ -48,4 +47,17 @@ class PrayerTimeProvider with ChangeNotifier {
     // TODO: Implement logic to get tomorrow's prayer time from the provider state
     throw UnimplementedError('Candidate needs to implement this method');
   }
+}
+
+@freezed
+sealed class PrayerTimeState with _$PrayerTimeState {
+  const factory PrayerTimeState.loading() = PrayerTimeStateLoading;
+
+  const factory PrayerTimeState.success(Map<String, PrayerTime> data) =
+      PrayerTimeStateSuccess;
+
+  const factory PrayerTimeState.failure(String message) =
+      PrayerTimeStateFailure;
+
+  const factory PrayerTimeState.empty() = PrayerTimeStateEmpty;
 }

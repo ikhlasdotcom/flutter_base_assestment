@@ -26,7 +26,7 @@ Implement a Flutter application that meets these requirements:
 This base project provides the skeleton structure that you should build upon:
 
 - **models/** - Contains the `PrayerTime` model class
-- **providers/** - Contains a skeleton for the `PrayerTimeProvider` that you need to implement
+- **cubit/** - Contains a skeleton for the `PrayerTimeCubit` that you need to implement
 - **screens/** - Contains a basic UI structure that you need to complete
 - **services/** - Contains skeleton classes for API and storage services
 
@@ -47,7 +47,7 @@ The following components need to be implemented:
    - Implement the `StorageService` to save and retrieve prayer times locally
 
 2. **State Management**:
-   - Complete the `PrayerTimeProvider` to manage the application state
+   - Complete the `PrayerTimeCubit` to manage the application state
    - Implement the logic to fetch data from the API or local storage based on requirements
 
 3. **UI**:
